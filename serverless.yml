@@ -1,0 +1,119 @@
+
+# TODO: EDIT Service name
+service: PROJECTNAME
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: ${opt:stage, 'dev'}
+  # TODO: EDIT Region
+  region: REGION
+  # TODO: Declare IAM Role Statements
+  # iamRoleStatements:
+  # # DYNAMODB
+  # # Comment out for Dynamodb Full Access
+  #   - Effect: Allow
+  #     Action:
+  #       - dynamodb:DescribeTable
+  #       - dynamodb:Query
+  #       - dynamodb:Scan
+  #       - dynamodb:GetItem
+  #       - dynamodb:PutItem
+  #       - dynamodb:UpdateItem
+  #       - dynamodb:DeleteItem
+  #     Resource:
+  #       - "Fn::GetAtt": [RESOURCENAME1, Arn]
+  # # REKOGNITION
+  # # Comment out for Rekognition Full Access
+  #   - Effect: Allow
+  #     Action:
+  #       - rekognition:CompareFaces
+  #       - rekognition:DetectFaces
+  #       - rekognition:DetectLabels
+  #       - rekognition:ListCollections
+  #       - rekognition:ListFaces
+  #       - rekognition:IndexFaces
+  #       - rekognition:SearchFaces
+  #       - rekognitino:SearchFacesByImage
+  #     Resource: "*"
+  # S3
+  # Comment out for S3 Full Access
+    - Effect: Allow
+      Action:
+        - s3:ListBucket
+        - s3:PutObject
+        - s3:PutObjectAcl
+        - s3:GetObject
+        - s3:GetObjectAcl
+      Resource:
+        - "Fn::GetAtt" : [RESOURCENAME2, Arn]
+
+functions:
+  servicename:
+    handler: index.handler
+    timeout: 900
+    # HTTP Function Events
+    # events:
+    #   - http:
+    #       path: sample
+    #       method: get
+    #       cors: true
+
+    #   - http:
+    #       path: sample/{id}
+    #       method: get
+    #       cors: true
+
+    #   - http:
+    #       path: sample
+    #       method: post
+    #       cors: true
+
+# TODO: Define Resources
+# resources:
+  # Resources:
+  #   # Dynamodb Table Resource
+  #   RESOURCENAME1:
+  #     Type: AWS::DynamoDB::Table
+  #     Properties:
+  #       TableName: AWSTABLENAME
+  #       AttributeDefinitions:
+  #         - AttributeName: PARTITIONKEY
+  #           AttributeType: PARTITINOKEY TYPE
+
+  #         - AttributeName: SORTKEY
+  #           AttributeType: SORTKEY TYPE
+    
+  #       KeySchema:
+  #         - AttributeName: PARTIONKEY
+  #           KeyType: HASH
+  #         - AttributeName: PARTIONKEY
+  #           KeyType: RANGE
+    
+  #       ProvisionedThroughput:
+  #         ReadCapacityUnits: 5
+  #         WriteCapacityUnits: 5
+  #   # S3 Resource
+  #   RESOURCENAME2:
+  #     Type: AWS::S3::Bucket
+  #     Properties: 
+  #       BucketName: BUCKETNAME
+  #       CorsConfiguration:
+  #         CorsRules:
+  #           -
+  #             AllowedOrigins:
+  #               - '*'
+  #             AllowedHeaders:
+  #               - '*'
+  #             AllowedMethods:
+  #               - GET
+  #               - PUT
+  #               - POST
+  #               - DELETE
+  #               - HEAD
+
+
+
+
+
+
